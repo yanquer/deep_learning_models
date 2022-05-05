@@ -9,8 +9,16 @@ def tanh(z):
 	:param z:
 	:return:
 	"""
-	e_tmp = np.exp(z)
-	return (e_tmp - 1/e_tmp)/(e_tmp + 1/e_tmp)
+	return np.tanh(z)
+
+
+def tanh_derivative(z):
+	"""
+		tanh 求导
+	:param z:
+	:return:
+	"""
+	return 1 - np.power(tanh(z), 2)
 
 
 def sigmoid(z):
@@ -20,6 +28,15 @@ def sigmoid(z):
 	:return:
 	"""
 	return 1/(1+np.exp(-z))
+
+
+def sigmoid_derivative(z):
+	"""
+		sigmoid 求导
+	:param z:
+	:return:
+	"""
+	return sigmoid(z) * (1 - sigmoid(z))
 
 
 def wt_func(mat_w, mat_x, b):
@@ -32,6 +49,7 @@ def wt_func(mat_w, mat_x, b):
 	"""
 	assert mat_w.shape[0] == mat_x.shape[0]
 	return np.dot(mat_w.T, mat_x) + b
+
 
 
 
