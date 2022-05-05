@@ -1,25 +1,19 @@
 # coding: utf-8
 import numpy as np
 from matplotlib import pyplot as plt
+
+from DNN import DnnModel
 from pubfun import sigmoid
 from single_neuron.lr_utils import load_dataset
 
 
-class DiscernCat(object):
-	def __init__(self, train_set, test_set):
+class DiscernCat(DnnModel):
+	def __init__(self, train_set, test_set, data_set):
+		super().__init__(data_set)
 		self.train_x_set = train_set.get('train_x')
 		self.train_y_set = train_set.get('train_y')
 		self.test_x_set = test_set.get('test_x')
 		self.test_y_set = test_set.get('test_y')
-		self.grads = {}
-		self.params = {}
-		self.cache = {}
-		self.cost = []
-		self.super_params = {
-			'num_times': 2000,
-			'learning_rate': 0.005,
-		}
-		self.pre_do()
 
 	def pre_do(self):
 		this_train_x, this_test_x = self.train_x_set, self.test_x_set
