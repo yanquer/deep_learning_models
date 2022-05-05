@@ -41,5 +41,5 @@ python
 
 - pubfun 定义一些公共的函数
 - single_neuron 单神经元逻辑回归模型，识别图片是否是猫，训练损失率大概为 ![训练识别猫模型](./images/img.png)
-
+- mul_neural 一个隐藏层4个神经元的浅层DNN模型，计算损失率为![](./images/img_flower.png)
 
