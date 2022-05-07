@@ -58,7 +58,6 @@ class DiscernFlower(DnnModel):
 		dZ1 = np.dot(W2.T, dZ2) * (1 - np.power(A1, 2))
 		dW1 = np.dot(dZ1, X.T)/m
 		db1 = np.sum(dZ1, axis=1, keepdims=True)/m
-
 		self.grads = {
 			'dW1': dW1,
 			'db1': db1,

@@ -3,7 +3,7 @@ import numpy as np
 
 from models import defs
 from models.DNN import DnnModel
-from old_models.single_neuron.lr_utils import load_dataset
+from lr_utils import load_dataset
 
 
 class DiscernCat(DnnModel):

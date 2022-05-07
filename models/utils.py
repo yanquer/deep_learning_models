@@ -55,7 +55,15 @@ def default_cost(A, Y, ):
 
 def default_cost_derivative(A, Y):
 	assert A.shape == Y.shape
-	return - Y/A + (1-Y)/(1-A)
+	r1 = (1-Y)/(1-A) - Y/A
+	r2 = - Y/A + (1-Y)/(1-A)
+	# d_str4 = ('A\n{}\n'.format(A))
+	# d_str5 = ('Y\n{}\n'.format(Y))
+	# d_str1 = ('r1 == r2 \n{}\n'.format(r1 == r2))
+	# d_str2 = ('r1\n{}\n'.format(r1))
+	# d_str3 = ('r2\n{}\n'.format(r2))
+	# write(d_str4 + d_str5 + d_str1 + d_str2 + d_str3)
+	return (1-Y)/(1-A) - Y/A
 
 
 ACTIVE_FUN_DICT = {
@@ -76,7 +84,7 @@ ACTIVE_FUN_DERIVATIVE_DICT = {
 def l_model_forward(X, params, neural_model_conf):
 	model_len = len(neural_model_conf)
 	caches = {'Z': [0 for _ in range(model_len+1)], 'A': [0 for _ in range(model_len+1)], }
-	Al = np.copy(X)
+	Al = X
 	w_list, b_list = params.get('W'), params.get('b')
 	for l in range(1, model_len+1):
 		W = w_list[l]
@@ -102,6 +110,7 @@ def l_model_backward(X, dAl, params: dict, caches: dict, neural_model_conf, ):
 		'db': [0 for _ in range(model_len + 1)],
 	}
 	assert dAl.any()
+
 	w_list, b_list = params.get('W'), params.get('b')
 	a_list, z_list = caches.get('A'), caches.get('Z')
 
@@ -144,3 +153,7 @@ def plot(x, y, x_label='num_iter', y_label='cost'):
 	plt.ylabel(ylabel=y_label)
 	plt.show()
 
+
+def write(data_str, file='log.txt'):
+	with open(file, 'w') as f:
+		f.writelines(data_str)

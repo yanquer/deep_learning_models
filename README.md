@@ -44,6 +44,14 @@ python
   - DNN 多层神经网络模版定义
   - utils 工具函数定义
   - cat 重构的识别猫的代码 新的代价函数 ![cost](./images/img_cat_cost.png)
+  - flower 重构的时候发现一个bug
+    感觉是python底层解析执行的问题，向量化计算会失败, 出bug代码 ![bug_code](./images/bug/bug_code.png)
+    bug示例，部分截图 ![bug_res](./images/bug/bug_res.png)
+    有意思的是，专门写了一个测试把原有数据拿去测试，居然复现不出 ![bug_test](./images/bug/bug_test.png)
+    排查到凌晨，发现是这个问题。。。具体原因还没找到，只找到bug点。
+    
+    输出放到 log文件夹下面
+
 
 - old_models 一些旧的模型（弃用了可以算）
   - pubfun 定义一些公共的函数

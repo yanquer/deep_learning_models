@@ -7,7 +7,7 @@ import numpy as np
 
 from models.defs import L_MODEL_CONFIG
 from models.utils import init_params, l_model_forward, l_model_backward, default_cost, update_params, plot, \
-	default_cost_derivative
+	default_cost_derivative, write
 
 
 class DnnModel(object):
@@ -43,6 +43,8 @@ class DnnModel(object):
 
 	def backward_process(self,):
 		A = self.caches.get('A')[self.len_neural]
+		Y =  self.train_y_set
+		write(str(A) + '\n' + str(Y))
 		dAl = self.compute_cost_derivative(A, self.train_y_set)
 		self.grads = l_model_backward(self.train_x_set, dAl, self.params, self.caches, self.neural_conf)
 
@@ -90,6 +92,7 @@ class DnnModel(object):
 				cost = self.compute_cost(A, self.train_y_set)
 				print('第{}次训练，损失为{}'.format(i + 1, cost))
 			self.update_params()
+			break
 		self.compute_error()
 
 
