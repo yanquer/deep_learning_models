@@ -55,8 +55,8 @@ def default_cost(A, Y, ):
 
 def default_cost_derivative(A, Y):
 	assert A.shape == Y.shape
-	r1 = (1-Y)/(1-A) - Y/A
-	r2 = - Y/A + (1-Y)/(1-A)
+	# r1 = (1-Y)/(1-A) - Y/A
+	# r2 = - Y/A + (1-Y)/(1-A)
 	# d_str4 = ('A\n{}\n'.format(A))
 	# d_str5 = ('Y\n{}\n'.format(Y))
 	# d_str1 = ('r1 == r2 \n{}\n'.format(r1 == r2))
