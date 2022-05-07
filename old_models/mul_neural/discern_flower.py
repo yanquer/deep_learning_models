@@ -6,9 +6,9 @@
 """
 import numpy as np
 from matplotlib import pyplot as plt
-from DNN import DnnModel
-from mul_neural.planar_utils import load_planar_dataset
-from pubfun import tanh, sigmoid
+from old_models.DNN import DnnModel
+from old_models.mul_neural.planar_utils import load_planar_dataset
+from old_models.pubfun import tanh, sigmoid
 
 
 class DiscernFlower(DnnModel):
@@ -87,11 +87,13 @@ class DiscernFlower(DnnModel):
 
 	def compute_error(self):
 		A2 = self.forward_process(self.train_x_set)
-		y_train = np.zeros(A2.shape)
-		y_train[A2 > 0.5] = 1
+		y_train = np.round(A2)
 
 		correct_train = (1 - np.mean(np.abs(y_train - self.train_y_set))) * 100
 		print('在训练集上的正确率为：{}%'.format(correct_train))
+		print('准确率: %d' % float(
+			(np.dot(self.train_y_set, y_train.T) + np.dot(1 - self.train_y_set, 1 - y_train.T)) / float(self.train_y_set.size) * 100) + '%')
+
 		self.art()
 
 	def art(self):

@@ -2,18 +2,14 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from DNN import DnnModel
-from pubfun import sigmoid
-from single_neuron.lr_utils import load_dataset
+from old_models.DNN import DnnModel
+from old_models.pubfun import sigmoid
+from old_models.single_neuron.lr_utils import load_dataset
 
 
 class DiscernCat(DnnModel):
-	def __init__(self, train_set, test_set, data_set):
+	def __init__(self, data_set):
 		super().__init__(data_set)
-		self.train_x_set = train_set.get('train_x')
-		self.train_y_set = train_set.get('train_y')
-		self.test_x_set = test_set.get('test_x')
-		self.test_y_set = test_set.get('test_y')
 
 	def pre_do(self):
 		this_train_x, this_test_x = self.train_x_set, self.test_x_set
@@ -108,14 +104,12 @@ class DiscernCat(DnnModel):
 
 if __name__ == '__main__':
 	train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes = load_dataset()
-	train_set_o = {
+	data = {
 		'train_x': train_set_x_orig,
 		'train_y': train_set_y_orig,
-	}
-	test_set_o = {
 		'test_x': test_set_x_orig,
 		'test_y': test_set_y_orig,
 	}
-	test_model = DiscernCat(train_set_o, test_set_o)
+	test_model = DiscernCat(data)
 	test_model.model()
 

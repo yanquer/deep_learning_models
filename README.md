@@ -39,7 +39,15 @@ python
 
 ## 结构说明
 
-- pubfun 定义一些公共的函数
-- single_neuron 单神经元逻辑回归模型，识别图片是否是猫，训练损失率大概为 ![训练识别猫模型](./images/img.png)
-- mul_neural 一个隐藏层4个神经元的浅层DNN模型，计算损失率为![](./images/img_flower.png)
+- models
+  - defs 一些公共宏定义
+  - DNN 多层神经网络模版定义
+  - utils 工具函数定义
+  - cat 重构的识别猫的代码 新的代价函数 ![cost](./images/img_cat_cost.png)
+
+- old_models 一些旧的模型（弃用了可以算）
+  - pubfun 定义一些公共的函数
+  - single_neuron 单神经元逻辑回归模型，识别图片是否是猫，训练损失率大概为 ![训练识别猫模型](./images/img.png)
+  - mul_neural 一个隐藏层4个神经元的浅层DNN模型，计算损失率为![](./images/img_flower.png)
+
 
